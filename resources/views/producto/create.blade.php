@@ -15,6 +15,9 @@
                     <div class="card-header">
                         <span class="card-title">{{ __('Create') }} Producto</span>
                     </div>
+                    <div class="card-header">
+                        <a class="btn btn-primary" href="{{ route('producto.index') }}"> Volver</a>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('producto.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
