@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\MenuProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 #Rutas de Roles y Usuarios
 Route::group(['middleware' => ['auth']], function(){
-    #Lista roles con CRUD
+    #Lista roles y usuarios con CRUD
     Route::resource('roles', RoleController::class); 
     Route::resource('users', UserController::class);
-    /* Vista Principal */ 
+    /* Vista Administracion Productos con CRUD */ 
     Route::resource('producto', ProductoController::class);
+    /* Vista Menu Productos */
+    Route::resource('menuProductos', MenuProductoController::class);
+    /* Vista Carrito de compras */
+    
 });
 

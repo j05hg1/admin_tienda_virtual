@@ -33,7 +33,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::latest()->paginate(5);
-
+        
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

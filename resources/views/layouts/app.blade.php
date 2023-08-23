@@ -39,6 +39,9 @@
                             <a class="nav-link" href="{{ route('producto.index') }}">{{ __('Productos') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('menuProductos.index') }}">{{ __('Menu Productos') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">{{ __('Pedidos') }}</a>
                         </li>
                         <li class="nav-item">
