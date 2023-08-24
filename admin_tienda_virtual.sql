@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-07-2023 a las 06:46:32
+-- Tiempo de generación: 24-08-2023 a las 07:07:06
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -97,7 +97,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 4),
 (2, 'App\\Models\\User', 5),
 (3, 'App\\Models\\User', 6),
-(5, 'App\\Models\\User', 7);
+(5, 'App\\Models\\User', 7),
+(5, 'App\\Models\\User', 8);
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,7 @@ CREATE TABLE `productos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `precio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
   `disponibilidad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `detalles` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -193,11 +194,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre`, `img`, `precio`, `disponibilidad`, `detalles`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Arroz integral', NULL, '2400', 'si', 'cereal', NULL, '2023-07-20 01:24:48', NULL),
-(3, 'Helado', 'imagen.jpg', '1800', 'si', 'Helado de frutas', '2023-07-20 00:10:27', '2023-07-20 01:23:02', NULL),
-(4, 'café', NULL, '7000', 'si', 'Café descremado', '2023-07-20 00:12:17', '2023-07-20 00:12:17', NULL),
-(5, 'Azucar', NULL, '1500', 'si', 'Endulzante', '2023-07-20 00:13:13', '2023-07-20 01:24:40', NULL),
-(6, 'Lentejas', NULL, '2000', 'si', NULL, '2023-07-20 00:14:27', '2023-07-20 01:24:27', NULL);
+(1, 'Arroz integral', NULL, '2400.00', 'si', 'cereal', NULL, '2023-07-20 01:24:48', NULL),
+(3, 'Helado', 'imagen.jpg', '1800.00', 'si', 'Helado de frutas', '2023-07-20 00:10:27', '2023-07-20 01:23:02', NULL),
+(4, 'café', NULL, '7000.00', 'si', 'Café descremado', '2023-07-20 00:12:17', '2023-07-20 00:12:17', NULL),
+(5, 'Azucar', NULL, '1500.00', 'si', 'Endulzante', '2023-07-20 00:13:13', '2023-07-20 01:24:40', NULL),
+(7, 'Monster', 'algo.jpg', '6000.00', 'si', 'Bebida energizante', '2023-07-22 00:02:15', '2023-07-22 00:02:15', NULL),
+(8, 'Alpinito de Chocolate', NULL, '5000.00', 'si', NULL, '2023-08-24 01:51:05', '2023-08-24 01:51:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,7 +288,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (4, 'Freddy Krueguer', 'admin@admintiendavirtual.com', NULL, '$2y$10$MqKiO8sX2Z..ibajD/T1IO7IYXV2OxyWlYqBJ0ibjXo82qJfOGPv2', NULL, '2023-07-19 23:49:00', '2023-07-20 09:32:50'),
 (5, 'Jason', 'gerente@admintiendavirtual.com', NULL, '$2y$10$iL5S8fYw.k/RhffdrOsNrOkxCLrlgM5E/FUN.xps9tWHMma077cSe', NULL, '2023-07-20 09:09:13', '2023-07-20 09:25:31'),
 (6, 'Michael Mayer', 'supervisor@admintiendavirtual.com', NULL, '$2y$10$fcwtRIu8f4zCL3SgRQ5S/O90IUkjVlJq9K.1lH9jV790BcGyMDWhK', NULL, '2023-07-20 09:25:04', '2023-07-20 09:25:04'),
-(7, 'Jefry', 'ymejia@seguridadatlas.com', NULL, '$2y$10$erx0RkCg3A88LRtQegsuHu8LefMOam44ZEkCDV9BN/ZtwFgL0m/GC', NULL, '2023-07-20 09:35:52', '2023-07-20 09:35:52');
+(7, 'Jefry', 'ymejia@seguridadatlas.com', NULL, '$2y$10$erx0RkCg3A88LRtQegsuHu8LefMOam44ZEkCDV9BN/ZtwFgL0m/GC', NULL, '2023-07-20 09:35:52', '2023-07-20 09:35:52'),
+(8, 'Invitado', 'invitado@admintiendavirtual.com', NULL, '$2y$10$K3cKBjD6LYtPhsJfqUuGB.H/RHN7zGMFE8BwBkotuhV1yOKbW2nhy', NULL, '2023-08-24 09:57:08', '2023-08-24 09:57:08');
 
 --
 -- Índices para tablas volcadas
@@ -405,7 +408,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -417,7 +420,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -961,6 +964,89 @@ ALTER TABLE `model_has_roles`
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+--
+-- Base de datos: `db_curso_php_int`
+--
+CREATE DATABASE IF NOT EXISTS `db_curso_php_int` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `db_curso_php_int`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos`
+--
+
+CREATE TABLE `equipos` (
+  `id` int(11) DEFAULT NULL,
+  `gamertag` varchar(50) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `juego` varchar(25) DEFAULT NULL,
+  `miembros` int(1) DEFAULT 1,
+  `url` varchar(255) NOT NULL,
+  `color` varchar(15) NOT NULL,
+  `creado` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `equipos`
+--
+
+INSERT INTO `equipos` (`id`, `gamertag`, `nombre`, `email`, `juego`, `miembros`, `url`, `color`, `creado`) VALUES
+(NULL, 'Moxtrip', 'John Doe', 'jslocal@locahost.com', 'Valorant', 5, '', 'ebebeb', '2023-08-22 02:23:45');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `precio` decimal(10,2) UNSIGNED NOT NULL,
+  `oferta` tinyint(1) DEFAULT 0,
+  `creado` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `precio`, `oferta`, `creado`) VALUES
+(1, 'Casco Metal Gear Solid 2023', '190000.99', 1, '2023-08-17 20:45:30'),
+(2, 'Chaleco invisible', '199000.50', 0, '2023-08-17 20:59:42'),
+(3, 'Chamarra de cuero', '99999.99', 1, '2023-08-17 20:59:42'),
+(4, 'Metal Gear Solid 4 Videojuego', '120000.00', 1, '2023-08-17 21:25:47'),
+(5, 'Playera Spiderman Marvel', '49900.00', 1, '2023-08-17 21:25:47'),
+(6, 'Playera Manga Larga Shazam DC Comics', '79900.00', 0, '2023-08-17 21:25:47'),
+(7, 'Playera Nightwing 2023 DC Comics', '39900.00', 1, '2023-08-17 21:25:47'),
+(8, 'Leggins Dama Negro Vital Army', '89900.00', 0, '2023-08-17 21:25:47'),
+(9, 'Valorant Videojuego', '9999.99', 1, '2023-08-17 21:25:47'),
+(10, 'Warzone 2', '19900.00', 1, '2023-08-17 21:25:47'),
+(11, 'Pack de 50 Stickers League Of Legends', '9900.00', 1, '2023-08-17 21:25:47'),
+(12, 'Impresión digital tabloide por pieza', '2200.00', 1, '2023-08-17 21:25:47'),
+(13, 'Goma de borrar mediana', '550.45', 1, '2023-08-17 21:25:47');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- Base de datos: `elfisgon`
 --
@@ -1656,7 +1742,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"admin_tienda_virtual\",\"table\":\"users\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"role_has_permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"model_has_permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"model_has_roles\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"roles\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"productos\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"personal_access_tokens\"},{\"db\":\"crudlaravel10\",\"table\":\"productos\"},{\"db\":\"crud_roles_stisla\",\"table\":\"permissions\"}]');
+('root', '[{\"db\":\"admin_tienda_virtual\",\"table\":\"users\"},{\"db\":\"db_curso_php_int\",\"table\":\"productos\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"productos\"},{\"db\":\"db_curso_php_int\",\"table\":\"equipos\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"role_has_permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"model_has_permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"model_has_roles\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"permissions\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"roles\"},{\"db\":\"admin_tienda_virtual\",\"table\":\"personal_access_tokens\"}]');
 
 -- --------------------------------------------------------
 
@@ -1789,7 +1875,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-07-19 20:02:22', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\",\"NavigationWidth\":0}');
+('root', '2023-08-24 04:55:45', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\",\"ThemeDefault\":\"pmahomme\"}');
 
 -- --------------------------------------------------------
 

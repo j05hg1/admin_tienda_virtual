@@ -29,24 +29,28 @@ class CartController extends Controller
         return back()->with('success', "$producto->nombre !Se ha agregado con éxito al carrito!");
     }
 
-    public function cart() {
+    public function cart() 
+    {
         $params = [
             'title' => 'Shopping Cart Checkout',
         ];
         return view('menuProductos.checkout')->with($params);
     }
 
-    // public function removeitem(Request $request) {
-    //     $producto = Producto::where('id', $request->id)->firstOrFail();
-    //     Cart::remove([
-    //         'id' => $producto->id,
-    //     ]);
-    //     return back()->with('success', "!Se ha eliminado el producto con éxito del carrito!");
-    // }
+    public function removeitem(Request $request) 
+    {        
+        // $producto = Producto::where('id', $request->id)->firstOrFail();
+        Cart::remove([
+            // 'id' => $producto->id,
+            'id' => $request->id,
+        ]);
+        return back()->with('success', "!Se ha eliminado el producto con éxito del carrito!");
+    }
 
-    // public function clear(){
-    //     Cart::clear();
-    //     return back()->with('success', "!Se ha agregado con éxito el carrito al carrito de compras!");
-    // }
+    public function clear()
+    {
+        Cart::clear();
+        return back()->with('success', "!Se ha limpiado con éxito el carrito!");
+    }
 
 }
