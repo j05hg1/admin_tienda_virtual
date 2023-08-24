@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\MenuProductoController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('producto', ProductoController::class);
     /* Vista Menu Productos */
     Route::resource('menuProductos', MenuProductoController::class);
-    /* Vista Carrito de compras */
-    
+    /* Carrito de compras */
+    Route::post('/cart-add', 'App\Http\Controllers\CartController@add')->name('cart.add');
+    Route::get('/cart-checkout', 'App\Http\Controllers\CartController@cart')->name('cart.checkout');
+    Route::post('/cart-clear', 'App\Http\Controllers\CartController@clear')->name('cart.clear');
+    Route::post('/cart-removeitem', 'App\Http\Controllers\CartController@removeitem')->name('cart.removeitem');
+
+    Route::resource('menuProductos/checkout', MenuProductoController::class);
+    // Route::delete('/cart-remove/{id}', 'CartController@remove')->name('cart.remove');
 });
 

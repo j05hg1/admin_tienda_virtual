@@ -42,10 +42,10 @@
                             <a class="nav-link" href="{{ route('menuProductos.index') }}">{{ __('Menu Productos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Pedidos') }}</a>
+                            <a class="nav-link" href="{{ route('cart.checkout') }}">{{ __('Carrito') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Carrito') }}</a>
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Pedidos') }}</a>
                         </li>
                         <!-- Nav desplegable -->
                         <li class="nav-item dropdown">
