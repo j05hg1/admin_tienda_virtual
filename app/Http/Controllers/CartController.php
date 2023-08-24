@@ -21,8 +21,8 @@ class CartController extends Controller
         Cart::add(
             $producto->id,
             $producto->nombre,
-            $producto->precio,
-            1,
+            $producto->precio,            
+            1,            
             array("urlfoto" => $producto->urlfoto)
         );
         // Se queda en la misma vista o regresa

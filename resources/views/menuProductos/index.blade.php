@@ -16,7 +16,7 @@
                 @forelse ($productos as $item)
                 <div class="col-4 border p-5 mt-5 text-center">
                     <h1>{{$item->nombre}}</h1>
-                    <p>$ {{$item->precio}}</p>
+                    <p>$ {{$item->precio}}</p>                    
                     <form action="{{ route('cart.add',$item->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="producto_id" value="{{$item->id}}">
