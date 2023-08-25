@@ -22,9 +22,10 @@
                                 <tr>
                                     <th>ID</th>       
                                     <th>Nombre</th>
-                                    <th>Precio</th>
+                                    <th>Precio Unitario</th>
                                     <th>Cantidad</th>    
-                                    {{-- <th>Imagen</th> --}}
+                                    <th>Total</th>
+                                    <th>Imagen</th>
                                     <th>Acciones</th>                            
                                 </tr>
                             </thead>
@@ -35,7 +36,11 @@
                                         <td>{{ $item->name }}</td>                                    
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>                                                                        
-                                        {{-- <td>{{ $item->img }}</td> --}}
+                                        <td>{{ $item->price * $item->quantity }}</td>
+                                        <td>
+                                            {{-- <img src="{!! asset("uploads/$item->img") !!}" width="100" class="img-responsive"> --}}
+                                            {{ $item->img }}
+                                        </td>
     
                                         <td>
                                             <form action="{{ route('cart.removeitem') }}" method="POST">
@@ -49,25 +54,32 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <div class="box box-info padding-1 py-2">
-                                        <div class="box-body">
-                                            <div class="box-footer mt20">
-                                                <form action="#" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-fw fa-trash"></i>{{ __('Confirmar') }}</button>
-                                                </form>
-                                            </div>
-                                            <div class="box-footer mt20">                                                
-                                                <form action="{{ route('cart.clear') }}" method="POST">
-                                                    @csrf                                                    
-                                                    <button type="submit" class="btn btn-danger btn-sm" ><i class="fa fa-fw fa-trash"></i> {{ __('Cancelar') }}</button>                                                
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                                    <td>${{ Cart::getTotal() }}</td>
+                                </tr>
+                            </tfoot>
                         </table>
+                        <div class="box box-info padding-1">
+                            <div class="box-body">
+                                <div class="box-footer mt20">
+                                    <form action="{{ route('cart.checkout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-fw fa-trash"></i>{{ __('Confirmar Compra') }}</button>
+                                    </form>
+                                </div>
+                                <div class="box-footer mt20 py-2">      
+                                    <form action="{{ route('cart.clear') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>{{ __('Cancelar Compra') }}</button>
+                                        {{-- <a href="{{ route('cart.clear') }}" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Cancelar Compra') }}</a> --}}
+                                    </form>                              
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
     

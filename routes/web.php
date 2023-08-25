@@ -44,8 +44,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/cart-checkout', 'App\Http\Controllers\CartController@cart')->name('cart.checkout');
     Route::post('/cart-clear', 'App\Http\Controllers\CartController@clear')->name('cart.clear');
     Route::post('/cart-removeitem', 'App\Http\Controllers\CartController@removeitem')->name('cart.removeitem');
-
-    Route::resource('menuProductos/checkout', MenuProductoController::class);
+    // Route::post('menuProductos/pedido', 'App\Http\Controllers\CartController@pedido')->name('menuProductos.pedido');
+    
     // Route::delete('/cart-remove/{id}', 'CartController@remove')->name('cart.remove');
 });
 

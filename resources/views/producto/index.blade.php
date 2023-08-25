@@ -96,7 +96,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-bordered table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -113,15 +113,17 @@
                                 <tbody>
                                     @foreach ($productos as $producto)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td class="v-align-middle">{{ ++$i }}</td>
                                             
-											<td>{{ $producto->nombre }}</td>
-											<td>{{ $producto->img }}</td>
-											<td>{{ $producto->precio }}</td>
-											<td>{{ $producto->disponibilidad }}</td>
-											<td>{{ $producto->detalles }}</td>
+											<td class="v-align-middle">{{ $producto->nombre }}</td>
+											<td class="v-align-middle">
+                                                <img src="{!! asset("uploads/$producto->img") !!}" width="100" class="img-responsive">
+                                            </td>
+											<td class="v-align-middle">{{ $producto->precio }}</td>
+											<td class="v-align-middle">{{ $producto->disponibilidad }}</td>
+											<td class="v-align-middle">{{ $producto->detalles }}</td>
 
-                                            <td>
+                                            <td class="v-align-middle">
                                                 <form action="{{ route('producto.destroy',$producto->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('producto.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('producto.edit',$producto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>

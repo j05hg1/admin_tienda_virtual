@@ -13,7 +13,7 @@ function eventslisteners()
     //eliminar curso en el carrito
     carrito.addEventListener('click', eliminarCurso);
 
-    //vaciar carrit de compras
+    //vaciar carrito de compras
     vaciarCarritoBtn.addEventListener('click', vaciarcarrito);
 
     //mostrar lista de cursos en carrito de compra al cargar DOM-LS

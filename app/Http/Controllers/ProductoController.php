@@ -57,6 +57,11 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        // Instancio al modelo Productos que hace llamado a la tabla 'productos' de la Base de Datos
+        $producto = new Producto();
+        // Almacenamos la imagen en la carpeta publica especifica, esto lo veremos más adelante 
+        $producto->img = $request->file('img')->store('/');
+
         request()->validate([
             'nombre'=>'required',
             'img',
