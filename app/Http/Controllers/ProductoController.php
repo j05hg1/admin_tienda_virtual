@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ProductoController
@@ -32,10 +33,13 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        // $producto = Producto::all();
+        // $productos = Producto::paginate(5);
         $productos = Producto::latest()->paginate(5);
         
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+        // return view('producto.index', compact('productos'));
     }
 
     /**
@@ -84,8 +88,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
+        //
         // $producto = Producto::find($id);
-
         return view('producto.show', compact('producto'));
     }
 
@@ -97,6 +101,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        //
         // $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
@@ -111,6 +116,13 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        //
+        // $producto = Producto::find($id);
+        // Recibo la imagen desde el formulario Actualizar
+        if ($request->hasFile('img')) {
+            $producto->img = $request->file('img')->store('/');
+        }
+
         request()->validate([
             'nombre'=>'required',
             'img',
@@ -130,8 +142,16 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Producto $producto)
+    public function destroy(Producto $producto, $id)
     {
+        //
+        // Indicamos el 'id' del registro que se va Eliminar
+        $producto = Producto::find($id);
+        // Elimino la imagen de la carpeta 'uploads', esto lo veremos más adelante
+        $imagen = explode(",", $producto->img);
+        Storage::delete($imagen);
+        /* unlink("storage/" . $producto->img);*/
+
         $producto->delete();
 
         return redirect()->route('producto.index')

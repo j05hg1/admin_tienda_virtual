@@ -52,7 +52,8 @@
             @foreach ($productos as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{ $item->img }}" class="card-img-top" alt="{{ $item->nombre }}">
+                        <img src="{{ $item->img}}" width="100" class="img-responsive card-img-top" alt="{{ $item->nombre }}">
+                        {{-- <img src="{{ $item->img }}" class="card-img-top" alt="{{ $item->nombre }}"> --}}
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ $item->nombre }}</strong></h5>
                             {{-- <p class="card-text">{{ $item->detalles }}</p> --}}

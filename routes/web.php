@@ -23,20 +23,24 @@ use App\Http\Controllers\CartController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 #Rutas de Roles y Usuarios
 Route::group(['middleware' => ['auth']], function(){
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     #Lista roles y usuarios con CRUD
     Route::resource('roles', RoleController::class); 
     Route::resource('users', UserController::class);
     /* Vista Administracion Productos con CRUD */ 
     Route::resource('producto', ProductoController::class);
+
+    // Route::get('admin/productos/crear', 'App\Http\Controllers\ProductosController@crear')->name('admin/productos/crear');
+    // Route::put('admin/productos/store', 'App\Http\Controllers\ProductosController@store')->name('admin/productos/store');
+
     /* Vista Menu Productos */
     Route::resource('menuProductos', MenuProductoController::class);
     /* Carrito de compras */

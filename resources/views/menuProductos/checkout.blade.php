@@ -26,7 +26,7 @@
                                     <th>Cantidad</th>    
                                     <th>Total</th>
                                     <th>Imagen</th>
-                                    <th>Acciones</th>                            
+                                    <th></th>                            
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,8 +38,7 @@
                                         <td>{{ $item->quantity }}</td>                                                                        
                                         <td>{{ $item->price * $item->quantity }}</td>
                                         <td>
-                                            {{-- <img src="{!! asset("uploads/$item->img") !!}" width="100" class="img-responsive"> --}}
-                                            {{ $item->img }}
+                                            <img src="{{ $item->img }}" width="100" class="img-responsive">
                                         </td>
     
                                         <td>
